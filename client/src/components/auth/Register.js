@@ -7,6 +7,13 @@ const Register = (props) => {
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
   const { register, error, clearErrors, isAuthenticated } = authContext;
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+  });
+  const { name, email, password, password2 } = user;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -18,15 +25,6 @@ const Register = (props) => {
     }
     // eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
-
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-    password2: '',
-  });
-
-  const { name, email, password, password2 } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
